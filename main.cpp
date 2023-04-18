@@ -597,7 +597,7 @@ void FirstMenu( SDL_Event e )
 
         SDL_RenderPresent( gRenderer );
     }
-    SDL_Delay(100);
+    SDL_Delay(300);
 }
 
 void Picksize( SDL_Event e )
