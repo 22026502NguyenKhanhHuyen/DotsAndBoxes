@@ -14,6 +14,9 @@ SDL_Renderer* gRenderer;
 //Dot
 SDL_Texture* dot = NULL;
 
+// background
+SDL_Texture* background = NULL;
+
 //Các ô
 SDL_Texture* cell[3];
 
@@ -94,6 +97,8 @@ void initWindow()
 void initTexture()
 {
     dot = loadTexture( gRenderer, "Dot1.png" );
+	
+    background = loadTexture(gRenderer, "background2.png");	
 
     line[ Default ] = NULL;
     line[ Mousemotion ] = loadTexture( gRenderer, "Mousemotion.png" );
@@ -592,6 +597,8 @@ void FirstMenu( SDL_Event e )
         SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
         SDL_RenderClear( gRenderer );
 
+	SDL_RenderCopy(gRenderer,background,NULL,NULL);
+    
         Me.CheckEvent( gRenderer, e );
         Me.renderTex( gRenderer );
 
