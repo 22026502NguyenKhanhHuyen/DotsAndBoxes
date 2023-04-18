@@ -49,7 +49,7 @@ void menu::renderTex( SDL_Renderer* gRenderer )
 
 MenuStatus menu::handleEvent( SDL_Renderer* gRenderer, SDL_Event e, SDL_Rect R )
 {
-    MenuStatus currentEvent;
+    MenuStatus currentEvent = DEFAUL;
     //If mouse event happened
         if( e.type == SDL_MOUSEMOTION || e.type == SDL_MOUSEBUTTONDOWN )
         {
