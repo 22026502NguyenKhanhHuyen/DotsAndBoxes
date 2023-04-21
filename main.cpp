@@ -360,18 +360,22 @@ int C[ CELL_NUMW+1 ][ CELL_NUMH+1 ];
 void CheckBoard()
 {
     bool ok = false;
+    int danhdau = 0;
     for(int i=change + 1; i<CELL_NUMW - change; i++)
     {
         for(int j=change + 1; j<CELL_NUMH - change; j++)
         {
             if( CheckCell( i, j ) && !block[i][j] )
             {
+	        if(danhdau == 0){
                 if( turn == 1 )
                 {
                     turn = 2;
                 }
                     else
                 turn = 1;
+		danhdau = 1;
+		}
 
                 C[i][j] = turn;
                 block[i][j] = true;
