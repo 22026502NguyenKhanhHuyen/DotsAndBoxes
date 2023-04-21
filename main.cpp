@@ -447,6 +447,8 @@ SDL_Texture* Exit;
 SDL_Texture* Menu;
 SDL_Texture* Turn1;
 SDL_Texture* Turn2;
+SDL_Texture* win1;
+SDL_Texture* win2;
 
 void initText()
 {
@@ -463,6 +465,9 @@ void initText()
 	Menu = loadFromRenderedText( gRenderer, "MENU", gFont, textColor );
 	Turn1 = loadFromRenderedText( gRenderer, "Turn: X ", gFontTurn, textColor );
 	Turn2 = loadFromRenderedText( gRenderer, "Turn: O ", gFontTurn, textColor );
+	
+	win1 = loadTexture(gRenderer,"winnerX.png");
+	win2 = loadTexture(gRenderer, "winnerO.png");
 }
 
 void renderText()
@@ -474,7 +479,13 @@ void renderText()
     SDL_RenderCopy( gRenderer, Turn1, NULL, &rectTurn1 );} else {
     SDL_Rect rectTurn2 = { CELL_WIDTH*13, CELL_HEIGHT*3, CELL_WIDTH*4, CELL_HEIGHT };
     SDL_RenderCopy( gRenderer, Turn2, NULL, &rectTurn2 );}
-
+    
+    if((Score1 + Score2) == (CELL_NUMW-change*2-1)*(CELL_NUMH-change*2-1)){
+            SDL_Rect rectScore = { 0, 200, 480, 50 };
+            if(Score1 > Score2) SDL_RenderCopy(gRenderer, win1, NULL, &rectScore);
+            else SDL_RenderCopy(gRenderer, win2, NULL, &rectScore);
+    }
+    
     SDL_Rect rectnew = { CELL_WIDTH*14-20, CELL_HEIGHT*6+15, CELL_WIDTH*3, CELL_HEIGHT };
     SDL_RenderCopy( gRenderer, Newgame, NULL, &rectnew );
 
