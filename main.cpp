@@ -16,6 +16,8 @@ SDL_Texture* dot = NULL;
 
 // background
 SDL_Texture* background = NULL;
+SDL_Texture* backgroundPickSize = NULL;
+SDL_Texture* backgroundGame = NULL;
 
 //Các ô
 SDL_Texture* cell[3];
@@ -33,8 +35,10 @@ Status eVertical[ CELL_NUMW+2 ][ CELL_NUMH+2 ];//dọc
 
 //Lượt người chơi
 int turn = 1;
+
 //đi tiếp
 bool again = false;
+
 //ô đấy đã có X hay O chưa
 bool block[ CELL_NUMW+1 ][ CELL_NUMH+1 ];
 
@@ -98,7 +102,9 @@ void initTexture()
 {
     dot = loadTexture( gRenderer, "Dot1.png" );
 	
-    background = loadTexture(gRenderer, "background2.png");	
+    background = loadTexture(gRenderer, "background1.png");
+    backgroundPickSize = loadTexture(gRenderer, "background2.png");
+    backgroundGame = loadTexture(gRenderer, "background3.png");	
 
     line[ Default ] = NULL;
     line[ Mousemotion ] = loadTexture( gRenderer, "Mousemotion.png" );
@@ -615,6 +621,8 @@ void Picksize( SDL_Event e )
         SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
         SDL_RenderClear( gRenderer );
 
+        SDL_RenderCopy(gRenderer,backgroundPickSize,NULL,NULL);
+	
         m.CheckEvent( gRenderer, e );
         m.renderTex( gRenderer );
 
@@ -680,6 +688,9 @@ int main( int argc, char** argv )
         SDL_SetRenderDrawColor( gRenderer, 77, 77, 77, 0xFF );
         SDL_RenderClear( gRenderer );
 
+        // Vẽ background của bàn chơi
+        SDL_RenderCopy(gRenderer,backgroundGame,NULL,NULL);
+	
         drawBoard();
 
         CheckBoard();
