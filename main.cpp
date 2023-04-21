@@ -445,12 +445,15 @@ SDL_Texture* Newgame;
 SDL_Texture* Exit;
 
 SDL_Texture* Menu;
-SDL_Texture* Turn;
+SDL_Texture* Turn1;
+SDL_Texture* Turn2;
 
 void initText()
 {
-    //Font chữ
+        //Font chữ
 	TTF_Font* gFont = TTF_OpenFont( "Menu.ttf", 80 );
+	TTF_Font* gFontTurn = TTF_OpenFont( "Menu.ttf", 40 );
+	
 	//Màu chữ
 	SDL_Color textColor = { 70, 70, 70 };
 
@@ -458,13 +461,19 @@ void initText()
 	Exit = loadFromRenderedText( gRenderer, "Exit", gFont, textColor );
 
 	Menu = loadFromRenderedText( gRenderer, "MENU", gFont, textColor );
-	Turn = loadFromRenderedText( gRenderer, "Turn:", gFont, textColor );
+	Turn1 = loadFromRenderedText( gRenderer, "Turn: X ", gFontTurn, textColor );
+	Turn2 = loadFromRenderedText( gRenderer, "Turn: O ", gFontTurn, textColor );
 }
 
 void renderText()
 {
     SDL_Rect rectMENU = { CELL_WIDTH*13, CELL_HEIGHT-5, CELL_WIDTH*4, CELL_HEIGHT*2-10 };
     SDL_RenderCopy( gRenderer, Menu, NULL, &rectMENU );
+    
+    if( turn ==1) {SDL_Rect rectTurn1 = { CELL_WIDTH*13, CELL_HEIGHT*3, CELL_WIDTH*4, CELL_HEIGHT };
+    SDL_RenderCopy( gRenderer, Turn1, NULL, &rectTurn1 );} else {
+    SDL_Rect rectTurn2 = { CELL_WIDTH*13, CELL_HEIGHT*3, CELL_WIDTH*4, CELL_HEIGHT };
+    SDL_RenderCopy( gRenderer, Turn2, NULL, &rectTurn2 );}
 
     SDL_Rect rectnew = { CELL_WIDTH*14-20, CELL_HEIGHT*6+15, CELL_WIDTH*3, CELL_HEIGHT };
     SDL_RenderCopy( gRenderer, Newgame, NULL, &rectnew );
@@ -691,6 +700,8 @@ int main( int argc, char** argv )
         // Vẽ background của bàn chơi
         SDL_RenderCopy(gRenderer,backgroundGame,NULL,NULL);
 	
+	drawMenu();
+	
         drawBoard();
 
         CheckBoard();
@@ -705,7 +716,7 @@ int main( int argc, char** argv )
         }
 
         renderDot();
-        drawMenu();
+        //drawMenu();
         renderMainMenu( Ms1, Ms2 );
         renderText();
 
