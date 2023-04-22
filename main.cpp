@@ -127,6 +127,15 @@ void close()
     }
     SDL_DestroyTexture( dot );
     dot = NULL;
+    
+    SDL_DestroyTexture( background );
+    background = NULL;
+    
+    SDL_DestroyTexture( backgroundPickSize );
+    backgroundPickSize = NULL;
+    
+    SDL_DestroyTexture( backgroundGame );
+    backgroundGame = NULL;
 
 	//Destroy window
 	SDL_DestroyRenderer( gRenderer );
@@ -248,22 +257,22 @@ Status handleEvent2( SDL_Event e, int i, int j)
             bool inside = true;
 
             //Mouse is left of the button
-            if( y < i*CELL_HEIGHT+2 )
+            if( y <= i*CELL_HEIGHT+2 )
             {
                 inside = false;
             }
             //Mouse is right of the button
-            else if( y > (i+1)*CELL_HEIGHT-2 )
+            else if( y >= (i+1)*CELL_HEIGHT-2 )
             {
                 inside = false;
             }
             //Mouse above the button
-            else if( x < j*CELL_WIDTH-2 )
+            else if( x <= j*CELL_WIDTH-2 )
             {
                 inside = false;
             }
             //Mouse below the button
-            else if( x > j*CELL_WIDTH+2 )
+            else if( x >= j*CELL_WIDTH+2 )
             {
                 inside = false;
             }
@@ -432,8 +441,8 @@ void drawMenu()
     SDL_RenderDrawRect( gRenderer, &MenuRect );
 
     //Vẽ các ô vuông khác
-    SDL_Rect MENUturn = { CELL_WIDTH*13+10, CELL_HEIGHT*5-20, CELL_WIDTH*4-20, CELL_HEIGHT };
-    SDL_RenderDrawRect( gRenderer, &MENUturn );
+    //SDL_Rect MENUturn = { CELL_WIDTH*13+10, CELL_HEIGHT*5-20, CELL_WIDTH*4-20, CELL_HEIGHT };
+    //SDL_RenderDrawRect( gRenderer, &MENUturn );
 
     SDL_Rect MENUnewgame = { CELL_WIDTH*13, CELL_HEIGHT*6, CELL_WIDTH*4, CELL_HEIGHT*2-10 };
     SDL_RenderDrawRect( gRenderer, &MENUnewgame );
