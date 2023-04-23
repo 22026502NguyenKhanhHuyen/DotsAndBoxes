@@ -44,6 +44,10 @@ bool block[ CELL_NUMW+1 ][ CELL_NUMH+1 ];
 
 //điểm từng người chơi
 int Score1, Score2;
+SDL_Texture* Mark1;
+SDL_Texture* Mark2;
+std::string mark1 = "X: ";
+std::string mark2 = "O: ";
 
 MenuSize m;
 menu Me;
@@ -136,6 +140,12 @@ void close()
     
     SDL_DestroyTexture( backgroundGame );
     backgroundGame = NULL;
+    
+    SDL_DestroyTexture(Mark1);
+    Mark1 = NULL;
+
+    SDL_DestroyTexture(Mark2);
+    Mark2 = NULL;
 
 	//Destroy window
 	SDL_DestroyRenderer( gRenderer );
@@ -499,6 +509,18 @@ void renderText()
             else SDL_RenderCopy(gRenderer, win2, NULL, &rectScore);
     }
     
+    if(Score1 >= 0){
+    mark1 = "X: "+std::to_string(Score1);
+    SDL_Rect rectMark = { CELL_WIDTH*12+20, CELL_HEIGHT*4+20, CELL_WIDTH*2, CELL_HEIGHT-5 };
+    SDL_RenderCopy( gRenderer, Mark1, NULL, &rectMark );
+    }
+
+    if(Score2 >= 0){
+    mark2 = "O: "+std::to_string(Score2);
+    SDL_Rect rectMark = { CELL_WIDTH*16-20, CELL_HEIGHT*4+20, CELL_WIDTH*2, CELL_HEIGHT-5 };
+    SDL_RenderCopy( gRenderer, Mark2, NULL, &rectMark );
+    }
+    
     SDL_Rect rectnew = { CELL_WIDTH*14-20, CELL_HEIGHT*6+15, CELL_WIDTH*3, CELL_HEIGHT };
     SDL_RenderCopy( gRenderer, Newgame, NULL, &rectnew );
 
@@ -742,6 +764,13 @@ int main( int argc, char** argv )
         renderDot();
         //drawMenu();
         renderMainMenu( Ms1, Ms2 );
+	
+	// point
+        TTF_Font* gFontMark = TTF_OpenFont( "Menu.ttf", 40 );
+        SDL_Color gColorMark = { 70,70,70 };
+        Mark1 = loadFromRenderedText( gRenderer, mark1, gFontMark, gColorMark );
+        Mark2 = loadFromRenderedText( gRenderer, mark2, gFontMark, gColorMark );
+	
         renderText();
 
         //Update màn hình
