@@ -31,6 +31,9 @@ class MenuSize
 
         //Xử lý event
         void CheckEvent( SDL_Renderer* gRenderer, SDL_Event e );
+        
+        //Xử lý sound event
+        bool CheckEventClic( SDL_Renderer* gRenderer, SDL_Event e );
 
         //Đã thoát ?
         bool CheckExit();
