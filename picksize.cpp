@@ -210,6 +210,54 @@ void MenuSize::CheckEvent( SDL_Renderer* gRenderer, SDL_Event e )
     }
 }
 
+bool MenuSize::CheckEventClic( SDL_Renderer* gRenderer, SDL_Event e )
+{
+    Tus T1, T2, T3, T4;
+
+    while( SDL_PollEvent( &e ) )
+    {
+        if( e.type == SDL_QUIT )
+        {
+            exit = true;
+            out = true;
+        }
+
+        T1 = handleEvent( gRenderer, e, rect1 );
+        T2 = handleEvent( gRenderer, e, rect2 );
+        T3 = handleEvent( gRenderer, e, rect3 );
+        T4 = handleEvent( gRenderer, e, rect4 );
+    }
+
+    if( T1 == CLICK )
+    {
+        Change = 3;
+        exit = true;
+        return true;
+    }
+    else
+        if( T2 == CLICK )
+    {
+        Change = 2;
+        exit = true;
+        return true;
+    }
+    else
+        if( T3 == CLICK )
+    {
+        Change = 1;
+        exit = true;
+        return true;
+    }
+    else
+        if( T4 == CLICK )
+    {
+        Change = 0;
+        exit = true;
+        return true;
+    }
+    return false;
+}
+
 bool MenuSize::CheckExit()
 {
     return (exit||out);
