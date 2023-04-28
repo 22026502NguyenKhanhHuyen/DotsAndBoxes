@@ -121,13 +121,7 @@ void initTexture()
 
     line[ Default ] = NULL;
     line[ Mousemotion ] = loadTexture( gRenderer, "Mousemotion.png" );
-
-    cell[0] = NULL;
-    TTF_Font* gFont = TTF_OpenFont( "Menu.ttf", 48 );
-    SDL_Color gColor = { 0, 200, 0 };
-    cell[1] = loadFromRenderedText( gRenderer, "X", gFont, gColor ); //Đánh dấu ô của người chơi x
-    SDL_Color ggColor = { 200, 0, 0 };
-    cell[2] = loadFromRenderedText( gRenderer, "O", gFont, ggColor ); //Đánh dấu ô của người chơi o
+    
 }
 
 //Đóng lại mọi thứ
@@ -174,6 +168,7 @@ void close()
 	gRenderer = NULL;
 
 	//Quit SDL subsystems
+	Mix_Quit();
 	TTF_Quit();
 	IMG_Quit();
 	SDL_Quit();
@@ -190,7 +185,6 @@ void renderDot()
         {
             SDL_Rect RectDot = { i*CELL_WIDTH-15, j*CELL_HEIGHT-15, DOT_WIDTH, DOT_HEIGHT };
             SDL_RenderCopy( gRenderer, dot, NULL, &RectDot );
-//            SDL_RenderDrawPoint( gRenderer, i*CELL_WIDTH, j*CELL_HEIGHT );
         }
     }
 }
@@ -443,7 +437,7 @@ void drawBoard()
     //Rect bàn
     SDL_Rect BoardRect = { CELL_WIDTH/2*(change*2+1), CELL_HEIGHT/2*(change*2+1), CELL_WIDTH*(10-change*2), CELL_HEIGHT*(10-change*2) };
     //Màu bàn
-    SDL_SetRenderDrawColor( gRenderer, 0xCC, 0xFF0, 0x99, 0xFF );
+    SDL_SetRenderDrawColor( gRenderer, 207, 237, 203, 0xFF );
     //Vẽ bàn
     SDL_RenderFillRect( gRenderer, &BoardRect );
     //Màu viền bàn
@@ -463,7 +457,7 @@ void drawMenu()
     //Rect cái menu
     SDL_Rect MenuRect = { CELL_WIDTH*12, CELL_HEIGHT/2, CELL_WIDTH*6, CELL_HEIGHT*10 };
     //Màu menu
-    SDL_SetRenderDrawColor( gRenderer, 0xCC, 0xCC, 0x99, 0xFF );
+    SDL_SetRenderDrawColor( gRenderer, 207, 237, 203, 0xFF );
     //Vẽ menu
     SDL_RenderFillRect( gRenderer, &MenuRect );
 
@@ -500,9 +494,11 @@ void initText()
         //Font chữ
 	TTF_Font* gFont = TTF_OpenFont( "Menu.ttf", 80 );
 	TTF_Font* gFontTurn = TTF_OpenFont( "Menu.ttf", 40 );
+	TTF_Font* gFontXO = TTF_OpenFont( "Menu.ttf", 48 );
 	
 	//Màu chữ
 	SDL_Color textColor = { 70, 70, 70 };
+	SDL_Color gColor = { 0, 200, 0 };
 
 	Newgame = loadFromRenderedText( gRenderer, "New Game", gFont, textColor );
 	Exit = loadFromRenderedText( gRenderer, "Exit", gFont, textColor );
@@ -514,7 +510,10 @@ void initText()
 	win1 = loadTexture(gRenderer,"winnerX.png");
 	win2 = loadTexture(gRenderer, "winnerO.png");
 	
-	clicSound = Mix_LoadWAV("Sound.wav");
+	cell[0] = NULL;
+    cell[1] = loadFromRenderedText( gRenderer, "X", gFontXO, gColor ); //Đánh dấu ô của người chơi x
+    SDL_Color ggColor = { 200, 0, 0 };
+    cell[2] = loadFromRenderedText( gRenderer, "O", gFontXO, ggColor ); //Đánh dấu ô của người chơi o
 }
 
 void renderText()
@@ -657,6 +656,8 @@ MainStatus handleEvent( SDL_Event e, SDL_Rect R )
 
                         case SDL_MOUSEBUTTONDOWN:
                         {
+			    Mix_PlayChannel(-1,clicSound,0);
+                            SDL_Delay(300);
                             currentEvent = press;
                             break;
                         }
@@ -685,6 +686,8 @@ void FirstMenu( SDL_Event e )
 	SDL_RenderCopy(gRenderer,background,NULL,NULL);
     
         Me.CheckEvent( gRenderer, e );
+	if(Me.CheckEventClic(gRenderer,e)) Mix_PlayChannel(-1,clicSound,0);
+        Me.renderTex( gRenderer );
         Me.renderTex( gRenderer );
 
         SDL_RenderPresent( gRenderer );
@@ -703,6 +706,8 @@ void Picksize( SDL_Event e )
         SDL_RenderCopy(gRenderer,backgroundPickSize,NULL,NULL);
 	
         m.CheckEvent( gRenderer, e );
+	if(m.CheckEventClic(gRenderer,e)) Mix_PlayChannel(-1,clicSound,0);
+        m.renderTex( gRenderer );
         m.renderTex( gRenderer );
 
         SDL_RenderPresent( gRenderer );
@@ -714,6 +719,9 @@ int main( int argc, char** argv )
     initWindow();
     initTexture();
     initText();
+    
+    // sound
+    clicSound = Mix_LoadWAV("Sound.wav");
 
     SDL_Event e1, e2, e;
 
@@ -764,7 +772,7 @@ int main( int argc, char** argv )
         }
 
         //Xoá màn hình bằng màu trắng
-        SDL_SetRenderDrawColor( gRenderer, 77, 77, 77, 0xFF );
+        SDL_SetRenderDrawColor( gRenderer, 255, 255, 255, 0xFF );
         SDL_RenderClear( gRenderer );
 
         // Vẽ background của bàn chơi
@@ -816,4 +824,5 @@ int main( int argc, char** argv )
     }
 
     close();
+    return 0;
 }
