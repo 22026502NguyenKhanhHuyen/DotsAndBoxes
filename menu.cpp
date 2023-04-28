@@ -1,6 +1,5 @@
 #include "menu.h"
 #include "init.h"
-#include <iostream>
 
 menu::menu()
 {
