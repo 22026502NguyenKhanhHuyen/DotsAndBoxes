@@ -168,6 +168,38 @@ void menu::CheckEvent( SDL_Renderer* gRenderer, SDL_Event e )
     }
 }
 
+bool menu::CheckEventClic( SDL_Renderer* gRenderer, SDL_Event e )
+{
+    MenuStatus T1, T2;
+
+    while( SDL_PollEvent( &e ) )
+    {
+        if( e.type == SDL_QUIT )
+        {
+            exit = true;
+            out = true;
+        }
+
+        T1 = handleEvent( gRenderer, e, rec1 );
+        T2 = handleEvent( gRenderer, e, rec2 );
+    }
+
+
+    if( T1 == CLIC )
+    {
+        exit = true;
+        return true;
+    }
+    else
+        if( T2 == CLIC )
+    {
+        exit = true;
+        out = true;
+        return true;
+    }
+    return false;
+}
+
 bool menu::CheckExit()
 {
     return (exit||out);
