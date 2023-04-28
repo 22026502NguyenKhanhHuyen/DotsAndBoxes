@@ -49,6 +49,9 @@ SDL_Texture* Mark2;
 std::string mark1 = "X: ";
 std::string mark2 = "O: ";
 
+//sound
+Mix_Chunk* clicSound;
+
 MenuSize m;
 menu Me;
 
@@ -96,6 +99,12 @@ void initWindow()
 				{
 					printf( "SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError() );
 				}
+				
+				// check audio
+				if(Mix_OpenAudio(20000,MIX_DEFAULT_FORMAT, 2, 4000) == -1)
+                {
+					printf( "SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError() );
+				}
 			}
 		}
 	}
@@ -132,6 +141,15 @@ void close()
     SDL_DestroyTexture( dot );
     dot = NULL;
     
+    SDL_DestroyTexture( cell[0] );
+    cell[0] = NULL;
+
+    SDL_DestroyTexture( cell[1] );
+    cell[1] = NULL;
+
+    SDL_DestroyTexture( cell[2] );
+    cell[2] = NULL;
+    
     SDL_DestroyTexture( background );
     background = NULL;
     
@@ -146,6 +164,8 @@ void close()
 
     SDL_DestroyTexture(Mark2);
     Mark2 = NULL;
+    
+    Mix_HaltChannel(-1);
 
 	//Destroy window
 	SDL_DestroyRenderer( gRenderer );
@@ -243,6 +263,7 @@ Status handleEvent1( SDL_Event e, int i, int j )
                                     turn = 1;
 
                             hor[ i ][ j ] = true;
+			    Mix_PlayChannel(-1,clicSound,0);
                             currentEvent = Line;
                             break;
                         }
@@ -318,6 +339,7 @@ Status handleEvent2( SDL_Event e, int i, int j)
                                 turn = 1;
 
                             ver[ i ][ j ] = true;
+			    Mix_PlayChannel(-1,clicSound,0);
                             currentEvent = Line;
                             break;
                         }
@@ -491,6 +513,8 @@ void initText()
 	
 	win1 = loadTexture(gRenderer,"winnerX.png");
 	win2 = loadTexture(gRenderer, "winnerO.png");
+	
+	clicSound = Mix_LoadWAV("Sound.wav");
 }
 
 void renderText()
