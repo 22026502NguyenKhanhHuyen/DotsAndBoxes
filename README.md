@@ -1,6 +1,7 @@
 # Game DOTS AND BOXES
-Nguyễn Khánh Huyền: 22026502  
-K67-CN16-UET
+* Nguyễn Khánh Huyền: 22026502  
+* K67-CN16-UET
+* Bài tập: INT2215 1 - Lập Trình Nâng Cao
 ## GIỚI THIỆU CHUNG:
 Dots and Boxes được hoàn thành dựa trên dots & boxes (app Plato) được bổ sung thêm boardSize thay vì chỉ có một kích cỡ duy nhất.    
 Game được viết bằng ngôn ngữ C++ và sử dụng thư viện SDL2.
