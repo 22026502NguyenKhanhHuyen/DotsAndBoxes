@@ -12,6 +12,9 @@ Game được viết bằng ngôn ngữ C++ và sử dụng thư viện SDL2.
   4.Trò chơi kết thúc khi tất cả các dòng được rút ra và các hộp được yêu cầu. Người chơi với số điểm cao nhất sẽ chiến thắng.
   
 ### Mô tả chức năng
+![alt text](https://github.com/22026502NguyenKhanhHuyen/Game/blob/main/demo/Screenshot%20(1).png)
+![alt text](https://github.com/22026502NguyenKhanhHuyen/Game/blob/main/demo/Screenshot%20(2).png)
+![alt text](https://github.com/22026502NguyenKhanhHuyen/Game/blob/main/demo/Screenshot%20(3).png)
 
 
 ### Hướng dẫn cài đặt
