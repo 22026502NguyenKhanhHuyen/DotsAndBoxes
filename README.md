@@ -15,7 +15,12 @@ Game được viết bằng ngôn ngữ C++ và sử dụng thư viện SDL2
 Hướng phát triển: Em sẽ cải tiến thêm các tuỳ chọn về  trong tương laiQua thời gian làm game, em đã cải thiện được một số kĩ năng về lập trình, tìm kiếm thông tin, giải quyết vấn đề và về khả năng đọc tài liệu tiếng Anh. Không những thế, nó còn giúp em nắm chính xác cách hoạt động và cài đặt đối tượng của một chương trình, làm nền tảng vững chắc cho em 
  
 ### Credit
-**Special thanks to:**  Thầy Trần Quốc Long  Thầy Nguyễn Lê Đức Trọng  Thầy Tạ Việt Cường  Thầy Đỗ Minh Khá  Vì đã giúp em hoàn thành bài tập này.
+**Special thanks to:**  
+Thầy Trần Quốc Long  
+Thầy Nguyễn Lê Đức Trọng  
+Thầy Tạ Việt Cường  
+Thầy Đỗ Minh Khá  
+Vì đã giúp em hoàn thành bài tập này.
 
 ### Resources:
  [Lazy Foo' Productions](https://lazyfoo.net/tutorials/SDL/)
