@@ -10,15 +10,15 @@ menu::menu()
 void menu::initTex( SDL_Renderer* gRenderer )
 {
     TTF_Font* gFont = TTF_OpenFont( "Menu.ttf", 80 );
-    SDL_Color gColor = { 70, 70, 70 };
+    SDL_Color gColor = { 211, 186, 135 };
 
-    Tex = loadFromRenderedText( gRenderer, "Dot", gFont, gColor );
+    Tex = loadFromRenderedText( gRenderer, "Dots Boxes", gFont, gColor );
     Tex1 = loadFromRenderedText( gRenderer, "Play Game", gFont, gColor );
     Tex2 = loadFromRenderedText( gRenderer, "Exit Game", gFont, gColor );
 }
 
-SDL_Rect rec1 = { 205, 165, 140, 60 };
-SDL_Rect rec2 = { 205, 305, 140, 60 };
+SDL_Rect rec1 = { 300, 170, 170, 70 };
+SDL_Rect rec2 = { 300, 260, 160, 60 };
 
 void menu::renderTex( SDL_Renderer* gRenderer )
 {
@@ -38,7 +38,7 @@ void menu::renderTex( SDL_Renderer* gRenderer )
 //    SDL_RenderDrawRect( gRenderer, &MENU4 );
 
 
-    SDL_Rect rectMENU = { 270, 40, 200, 70 };
+    SDL_Rect rectMENU = { 260, 70, 240, 70 };
     SDL_RenderCopy( gRenderer, Tex, NULL, &rectMENU );
 
     SDL_RenderCopy( gRenderer, Tex1, NULL, &rec1 );
@@ -117,8 +117,8 @@ void menu::CheckEvent( SDL_Renderer* gRenderer, SDL_Event e )
     MenuStatus T1, T2;
 
     TTF_Font* gFont = TTF_OpenFont( "Menu.ttf", 40 );
-    SDL_Color gColor1 = { 100, 100, 0 };
-    SDL_Color gColor2 = { 100, 0, 0 };
+    SDL_Color gColor1 = { 133, 171, 213 };
+    SDL_Color gColor2 = { 128, 110, 236 };
 
     while( SDL_PollEvent( &e ) )
     {
