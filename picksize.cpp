@@ -100,6 +100,7 @@ Tus MenuSize::handleEvent( SDL_Renderer* gRenderer, SDL_Event e, SDL_Rect R )
             else
             {
                 //Set mouse over sprite
+                currentEvent = MOUSE;
                 if( currentEvent == DEFAULT || currentEvent == MOUSE )
                     switch( e.type )
                     {
