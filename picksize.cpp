@@ -58,7 +58,7 @@ Tus MenuSize::handleEvent( SDL_Renderer* gRenderer, SDL_Event e, SDL_Rect R )
 {
     Tus currentEvent = DEFAULT;
     //If mouse event happened
-        if( e.type == SDL_MOUSEMOTION || e.type == SDL_MOUSEBUTTONDOWN )
+        //if( e.type == SDL_MOUSEMOTION || e.type == SDL_MOUSEBUTTONDOWN )
         {
             //Get mouse position
             int x, y;
@@ -128,7 +128,7 @@ void MenuSize::CheckEvent( SDL_Renderer* gRenderer, SDL_Event e )
     SDL_Color gColor1 = { 100, 100, 0 };
     SDL_Color gColor2 = { 100, 0, 0 };
 
-    while( SDL_PollEvent( &e ) )
+    //while( SDL_PollEvent( &e ) )
     {
         if( e.type == SDL_QUIT )
         {
