@@ -10,9 +10,9 @@ SDL_Texture* loadTexture( SDL_Renderer* gRenderer, std::string path )
 	SDL_Surface* loadedSurface = IMG_Load( path.c_str() );
 
 	//Xoá màu trắng ở hình ảnh
-    SDL_SetColorKey( loadedSurface, SDL_TRUE, SDL_MapRGB( loadedSurface->format, 0xFF, 0xFF, 0xFF ) );
+        SDL_SetColorKey( loadedSurface, SDL_TRUE, SDL_MapRGB( loadedSurface->format, 0xFF, 0xFF, 0xFF ) );
 
-	SDL_SetColorKey( loadedSurface, SDL_TRUE, SDL_MapRGB( loadedSurface->format, 0xFF, 0xFF, 0xFF ) );
+	//SDL_SetColorKey( loadedSurface, SDL_TRUE, SDL_MapRGB( loadedSurface->format, 0xFF, 0xFF, 0xFF ) );
 
 	if( loadedSurface == NULL )
 	{
