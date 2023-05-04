@@ -477,9 +477,9 @@ void drawMenu()
     SDL_RenderDrawRect( gRenderer, &MENUexit );
 }
 
-SDL_Texture* Left;
-SDL_Texture* Right;
-SDL_Texture* Middle;
+//SDL_Texture* Left;
+//SDL_Texture* Right;
+//SDL_Texture* Middle;
 SDL_Texture* Newgame;
 SDL_Texture* Exit;
 
@@ -688,7 +688,7 @@ void FirstMenu( SDL_Event e )
         Me.CheckEvent( gRenderer, e );
 	if(Me.CheckEventClic(gRenderer,e)) Mix_PlayChannel(-1,clicSound,0);
         Me.renderTex( gRenderer );
-        Me.renderTex( gRenderer );
+        //Me.renderTex( gRenderer );
 
         SDL_RenderPresent( gRenderer );
     }
