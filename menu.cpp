@@ -92,6 +92,7 @@ MenuStatus menu::handleEvent( SDL_Renderer* gRenderer, SDL_Event e, SDL_Rect R )
             else
             {
                 //Set mouse over sprite
+                currentEvent = MOUS;
                 if( currentEvent == DEFAUL || currentEvent == MOUS )
                     switch( e.type )
                     {
