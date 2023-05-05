@@ -708,7 +708,7 @@ void Picksize( SDL_Event e )
         m.CheckEvent( gRenderer, e );
 	if(m.CheckEventClic(gRenderer,e)) Mix_PlayChannel(-1,clicSound,0);
         m.renderTex( gRenderer );
-        m.renderTex( gRenderer );
+        //m.renderTex( gRenderer );
 
         SDL_RenderPresent( gRenderer );
     }
